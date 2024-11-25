@@ -27,13 +27,12 @@ export default function Registrar() {
 
 
   return (
-        <>
-        <main>
+     <form>
+      <form action=""> 
+
+      </form>
+     </form>
 
 
-
-
-        </main>        
-        </>
   );
 }
