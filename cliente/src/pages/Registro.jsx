@@ -27,12 +27,17 @@ export default function Registrar() {
 
 
   return (
-     <form>
-      <form action=""> 
 
-      </form>
-     </form>
-
-
+    <main>
+      <form>
+        <input
+          type="text"
+          value={nome}
+          onChange={(event) => setNome(event.target.value)}
+        />
+        <input type="email"/>
+        <button>Salvar</button>
+        </form>
+    </main>
   );
 }
