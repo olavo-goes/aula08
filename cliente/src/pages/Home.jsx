@@ -15,7 +15,22 @@ export default function Home() {
       }
     }
     buscarUsuario();
-  }, [])
+  }, [usuarios])
+
+
+
+      const remover = async(id) => {
+          try{
+              await fetch('http://localhost:3000/usuarios'+id, {
+                method: 'DELETE'
+              });
+          }
+          catch{
+            alert("erro")
+          }
+      }
+
+
 
   return (
     <table>
@@ -27,6 +42,11 @@ export default function Home() {
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
+          <rd>
+
+              <button onClick={() => remover (usuario.id)}>Excluir</button>
+
+          </rd>
         </tr>
       )}
     </table>
