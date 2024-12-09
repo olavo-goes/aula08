@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import {Button} from "@mui/material"
+import AdfScannerIcon from '@mui/icons-material/AdfScanner';
 
 export default function Home() {
 
@@ -19,7 +22,6 @@ export default function Home() {
   }, [usuarios])
 
 
-
       const remover = async(id) => {
           try{
               await fetch('http://localhost:3000/usuarios/ '+ id, {
@@ -32,8 +34,28 @@ export default function Home() {
       }
 
 
+      const exportarPDF = () => {
+          const doc = new jsPDF();
+
+          const tabela = usuarios.map(usuario => [
+            usuario.id,
+            usuario.nome,
+            usuario.email
+          ]);
+           doc.text("Lista de Usuários", 10, 10);
+           doc.autoTable({
+          head:[["id","nome","Email"]],
+            body: tabela
+           })
+           doc.save("Arquivo baixado");
+      }
+ 
 
   return (
+    <div>
+
+    <Button variant="contained" onClick={() => exportarPDF()}>Gerar PDF</Button>
+    
     <table>
       <tr>
         <td>Nome</td>
@@ -43,9 +65,10 @@ export default function Home() {
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
-          <td><button onClick={() => remover(usuario.id)}/>remover</td>
+          <td><button onClick={() => remover(usuario.id)}>remover</button></td>
         </tr>
       )}
     </table>
+    </div>
   );
 }
