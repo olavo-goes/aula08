@@ -5,27 +5,27 @@ export default function Registrar() {
 
 
   const [nome, setNome] = useState('');
-  const [Email, setEmail] = useState('');
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const navigation = useNavigate();
 
   const registrar = async (event) => {
   event.preventDefault();
   try{
     const resposta = await fetch('http://localhost:3000/usuarios', {
         method: 'POST',
-        headers: {'Content-Type': 'application.json'},
-        dody: JSON.stringify({
-          nome: 'nome',
-          email: 'email'
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          nome: nome,
+          email: email
         })
     })
     if(resposta.ok){
-        navigate('/')
+        navigation('/')
     }
   }
-  catch{
-    alert('ocorreu um erro')
-  } registrar(), []}
+  catch(err){
+    alert('nada', err)
+  }}
 
 
   return (
@@ -33,7 +33,7 @@ export default function Registrar() {
     <main>
       <form onSubmit={registrar}>
         <input
-          type="Text"
+          type="text"
           value={nome}
           placeholder="Nome"
           onChange={(event) => setNome(event.target.value)}
@@ -41,14 +41,14 @@ export default function Registrar() {
 
 
         <input 
-        type="Email"
-        value={Email}
+        type="email"
+        value={email}
         placeholder="Email"
         onChange={(event) => setEmail(event.target.value)}
         />
 
 
-        <button onSubmit={registrar}>Salvar</button>
+        <button type="submit">Salvar</button>
         </form>
     </main>
   );

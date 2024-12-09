@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 export default function Home() {
 
   const [usuarios, setUsuarios] = useState([]);
@@ -21,7 +22,7 @@ export default function Home() {
 
       const remover = async(id) => {
           try{
-              await fetch('http://localhost:3000/usuarios'+id, {
+              await fetch('http://localhost:3000/usuarios/ '+ id, {
                 method: 'DELETE'
               });
           }
@@ -42,11 +43,7 @@ export default function Home() {
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
-          <rd>
-
-              <button onClick={() => remover (usuario.id)}>Excluir</button>
-
-          </rd>
+          <td><button onClick={() => remover(usuario.id)}/>remover</td>
         </tr>
       )}
     </table>
