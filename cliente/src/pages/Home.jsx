@@ -54,7 +54,7 @@ export default function Home() {
   return (
     <div>
 
-    <Button variant="contained" onClick={() => exportarPDF()}>Gerar PDF</Button>
+    <Button variant="contained" onClick={() => exportarPDF()}><AdfScannerIcon/></Button>
     
     <table>
       <tr>
