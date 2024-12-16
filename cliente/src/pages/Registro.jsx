@@ -1,6 +1,7 @@
 import { useState } from "react";
 import  {useNavigate}  from "react-router-dom";
 
+
 export default function Registrar() {
 
 
@@ -46,7 +47,6 @@ export default function Registrar() {
         placeholder="Email"
         onChange={(event) => setEmail(event.target.value)}
         />
-
 
         <button type="submit">Salvar</button>
         </form>

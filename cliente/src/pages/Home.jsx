@@ -24,7 +24,7 @@ export default function Home() {
 
       const remover = async(id) => {
           try{
-              await fetch('http://localhost:3000/usuarios/ '+ id, {
+              await fetch('http://localhost:3000/usuarios/ ' + id, {
                 method: 'DELETE'
               });
           }
@@ -65,7 +65,9 @@ export default function Home() {
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
-          <td><button onClick={() => remover(usuario.id)}>remover</button></td>
+          <td><button onClick={() => remover(usuarios.id)}>remover</button>
+          <link to={'/Alterar/'}> </link>
+          </td> 
         </tr>
       )}
     </table>
