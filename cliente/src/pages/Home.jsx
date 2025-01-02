@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import {Button} from "@mui/material"
-import AdfScannerIcon from '@mui/icons-material/AdfScanner';
+import { Link } from 'react-router-dom'
+
+
 
 export default function Home() {
 
@@ -24,7 +26,7 @@ export default function Home() {
 
       const remover = async(id) => {
           try{
-              await fetch('http://localhost:3000/usuarios/ ' + id, {
+              await fetch('http://localhost:3000/usuarios/' + id, {
                 method: 'DELETE'
               });
           }
@@ -52,25 +54,31 @@ export default function Home() {
  
 
   return (
-    <div>
+    <>
 
-    <Button variant="contained" onClick={() => exportarPDF()}><AdfScannerIcon/></Button>
+
+    <div>    
+    <Button variant="contained" onClick={() => exportarPDF()}>export</Button>
     
     <table>
       <tr>
         <td>Nome</td>
         <td>E-mail</td>
+        <td>id</td>
       </tr>
       {usuarios.map((usuario) =>
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
-          <td><button onClick={() => remover(usuarios.id)}>remover</button>
-          <link to={'/Alterar/'}> </link>
+          <td><button onClick={() => remover(usuario.id)}>remover</button>
+          <Link to={'/Alterar/' + usuario.id}> 
+            <button>alterar</button>
+          </Link>
           </td> 
         </tr>
       )}
     </table>
     </div>
+    </>
   );
 }
